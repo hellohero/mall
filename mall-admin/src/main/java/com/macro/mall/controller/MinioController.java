@@ -2,6 +2,7 @@ package com.macro.mall.controller;
 
 import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.dto.MinioUploadDto;
+import io.github.pixee.security.Filenames;
 import io.minio.MinioClient;
 import io.minio.policy.PolicyType;
 import io.swagger.annotations.Api;
@@ -52,7 +53,7 @@ public class MinioController {
                 minioClient.makeBucket(BUCKET_NAME);
                 minioClient.setBucketPolicy(BUCKET_NAME, "*.*", PolicyType.READ_ONLY);
             }
-            String filename = file.getOriginalFilename();
+            String filename = Filenames.toSimpleFileName(file.getOriginalFilename());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             // 设置存储对象名称
             String objectName = sdf.format(new Date()) + "/" + filename;
