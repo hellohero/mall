@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +28,7 @@ public class CmsSubjectController {
     private CmsSubjectService subjectService;
 
     @ApiOperation("获取全部商品专题")
-    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    @GetMapping(value = "/listAll")
     @ResponseBody
     public CommonResult<List<CmsSubject>> listAll() {
         List<CmsSubject> subjectList = subjectService.listAll();
@@ -35,7 +36,7 @@ public class CmsSubjectController {
     }
 
     @ApiOperation(value = "根据专题名称分页获取专题")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @ResponseBody
     public CommonResult<CommonPage<CmsSubject>> getList(@RequestParam(value = "keyword", required = false) String keyword,
                                                         @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -35,7 +37,7 @@ public class RestTemplateDemoController {
     private String HOST_MALL_ADMIN;
 
     @ApiOperation("getForEntity url")
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/get/{id}")
     @ResponseBody
     public Object getForEntity(@PathVariable Long id) {
         String url = HOST_MALL_ADMIN + "/brand/{id}";
@@ -44,7 +46,7 @@ public class RestTemplateDemoController {
     }
 
     @ApiOperation("getForEntity params")
-    @RequestMapping(value = "/get2/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/get2/{id}")
     @ResponseBody
     public Object getForEntity2(@PathVariable Long id) {
         String url = HOST_MALL_ADMIN + "/brand/{id}";
@@ -55,7 +57,7 @@ public class RestTemplateDemoController {
     }
 
     @ApiOperation("getForEntity Uri")
-    @RequestMapping(value = "/get3/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/get3/{id}")
     @ResponseBody
     public Object getForEntity3(@PathVariable Long id) {
         String url = HOST_MALL_ADMIN + "/brand/{id}";
@@ -65,7 +67,7 @@ public class RestTemplateDemoController {
     }
 
     @ApiOperation("getForObject url")
-    @RequestMapping(value = "/get4/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/get4/{id}")
     @ResponseBody
     public Object getForObject(@PathVariable Long id) {
         String url = HOST_MALL_ADMIN + "/brand/{id}";
@@ -74,7 +76,7 @@ public class RestTemplateDemoController {
     }
 
     @ApiOperation("postForEntity jsonBody")
-    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    @PostMapping(value = "/post")
     @ResponseBody
     public Object postForEntity(@RequestBody PmsBrand brand) {
         String url = HOST_MALL_ADMIN + "/brand/create";
@@ -83,7 +85,7 @@ public class RestTemplateDemoController {
     }
 
     @ApiOperation("postForEntity jsonBody")
-    @RequestMapping(value = "/post2", method = RequestMethod.POST)
+    @PostMapping(value = "/post2")
     @ResponseBody
     public Object postForObject(@RequestBody PmsBrand brand) {
         String url = HOST_MALL_ADMIN + "/brand/create";
@@ -92,7 +94,7 @@ public class RestTemplateDemoController {
     }
 
     @ApiOperation("postForEntity form")
-    @RequestMapping(value = "/post3", method = RequestMethod.POST)
+    @PostMapping(value = "/post3")
     @ResponseBody
     public Object postForEntity3(@RequestParam String name) {
         String url = HOST_MALL_ADMIN + "/productAttribute/category/create";

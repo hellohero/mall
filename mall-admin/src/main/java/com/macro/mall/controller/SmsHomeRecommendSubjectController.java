@@ -24,7 +24,7 @@ public class SmsHomeRecommendSubjectController {
     private SmsHomeRecommendSubjectService recommendSubjectService;
 
     @ApiOperation("添加首页推荐专题")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     @ResponseBody
     public CommonResult create(@RequestBody List<SmsHomeRecommendSubject> homeBrandList) {
         int count = recommendSubjectService.create(homeBrandList);
@@ -35,7 +35,7 @@ public class SmsHomeRecommendSubjectController {
     }
 
     @ApiOperation("修改推荐排序")
-    @RequestMapping(value = "/update/sort/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/update/sort/{id}")
     @ResponseBody
     public CommonResult updateSort(@PathVariable Long id, Integer sort) {
         int count = recommendSubjectService.updateSort(id, sort);
@@ -46,7 +46,7 @@ public class SmsHomeRecommendSubjectController {
     }
 
     @ApiOperation("批量删除推荐")
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @PostMapping(value = "/delete")
     @ResponseBody
     public CommonResult delete(@RequestParam("ids") List<Long> ids) {
         int count = recommendSubjectService.delete(ids);
@@ -57,7 +57,7 @@ public class SmsHomeRecommendSubjectController {
     }
 
     @ApiOperation("批量修改推荐状态")
-    @RequestMapping(value = "/update/recommendStatus", method = RequestMethod.POST)
+    @PostMapping(value = "/update/recommendStatus")
     @ResponseBody
     public CommonResult updateRecommendStatus(@RequestParam("ids") List<Long> ids, @RequestParam Integer recommendStatus) {
         int count = recommendSubjectService.updateRecommendStatus(ids, recommendStatus);
@@ -68,7 +68,7 @@ public class SmsHomeRecommendSubjectController {
     }
 
     @ApiOperation("分页查询推荐")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @ResponseBody
     public CommonResult<CommonPage<SmsHomeRecommendSubject>> list(@RequestParam(value = "subjectName", required = false) String subjectName,
                                                                   @RequestParam(value = "recommendStatus", required = false) Integer recommendStatus,

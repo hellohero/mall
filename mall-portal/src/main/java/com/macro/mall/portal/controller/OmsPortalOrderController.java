@@ -24,7 +24,7 @@ public class OmsPortalOrderController {
     private OmsPortalOrderService portalOrderService;
 
     @ApiOperation("根据购物车信息生成确认单信息")
-    @RequestMapping(value = "/generateConfirmOrder", method = RequestMethod.POST)
+    @PostMapping(value = "/generateConfirmOrder")
     @ResponseBody
     public CommonResult<ConfirmOrderResult> generateConfirmOrder() {
         ConfirmOrderResult confirmOrderResult = portalOrderService.generateConfirmOrder();
@@ -32,7 +32,7 @@ public class OmsPortalOrderController {
     }
 
     @ApiOperation("根据购物车信息生成订单")
-    @RequestMapping(value = "/generateOrder", method = RequestMethod.POST)
+    @PostMapping(value = "/generateOrder")
     @ResponseBody
     public CommonResult generateOrder(@RequestBody OrderParam orderParam) {
         Map<String, Object> result = portalOrderService.generateOrder(orderParam);
@@ -40,7 +40,7 @@ public class OmsPortalOrderController {
     }
 
     @ApiOperation("支付成功的回调")
-    @RequestMapping(value = "/paySuccess", method = RequestMethod.POST)
+    @PostMapping(value = "/paySuccess")
     @ResponseBody
     public CommonResult paySuccess(@RequestParam Long orderId) {
         Integer count = portalOrderService.paySuccess(orderId);
@@ -48,7 +48,7 @@ public class OmsPortalOrderController {
     }
 
     @ApiOperation("自动取消超时订单")
-    @RequestMapping(value = "/cancelTimeOutOrder", method = RequestMethod.POST)
+    @PostMapping(value = "/cancelTimeOutOrder")
     @ResponseBody
     public CommonResult cancelTimeOutOrder() {
         portalOrderService.cancelTimeOutOrder();
@@ -56,7 +56,7 @@ public class OmsPortalOrderController {
     }
 
     @ApiOperation("取消单个超时订单")
-    @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
+    @PostMapping(value = "/cancelOrder")
     @ResponseBody
     public CommonResult cancelOrder(Long orderId) {
         portalOrderService.sendDelayMessageCancelOrder(orderId);

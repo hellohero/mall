@@ -23,7 +23,7 @@ public class MemberReadHistoryController {
     private MemberReadHistoryService memberReadHistoryService;
 
     @ApiOperation("创建浏览记录")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     @ResponseBody
     public CommonResult create(@RequestBody MemberReadHistory memberReadHistory) {
         int count = memberReadHistoryService.create(memberReadHistory);
@@ -35,7 +35,7 @@ public class MemberReadHistoryController {
     }
 
     @ApiOperation("删除浏览记录")
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @PostMapping(value = "/delete")
     @ResponseBody
     public CommonResult delete(@RequestParam("ids") List<String> ids) {
         int count = memberReadHistoryService.delete(ids);
@@ -47,7 +47,7 @@ public class MemberReadHistoryController {
     }
 
     @ApiOperation("展示浏览记录")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @ResponseBody
     public CommonResult<List<MemberReadHistory>> list(Long memberId) {
         List<MemberReadHistory> memberReadHistoryList = memberReadHistoryService.list(memberId);
