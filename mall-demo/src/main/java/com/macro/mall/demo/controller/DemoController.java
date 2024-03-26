@@ -29,14 +29,14 @@ public class DemoController {
     private static final Logger LOGGER = LoggerFactory.getLogger(DemoController.class);
 
     @ApiOperation(value = "获取全部品牌列表")
-    @RequestMapping(value = "/brand/listAll", method = RequestMethod.GET)
+    @GetMapping(value = "/brand/listAll")
     @ResponseBody
     public CommonResult<List<PmsBrand>> getBrandList() {
         return CommonResult.success(demoService.listAllBrand());
     }
 
     @ApiOperation(value = "添加品牌")
-    @RequestMapping(value = "/brand/create", method = RequestMethod.POST)
+    @PostMapping(value = "/brand/create")
     @ResponseBody
     public CommonResult createBrand(@Validated @RequestBody PmsBrandDto pmsBrand, BindingResult result) {
         if (result.hasErrors()) {
@@ -55,7 +55,7 @@ public class DemoController {
     }
 
     @ApiOperation(value = "更新品牌")
-    @RequestMapping(value = "/brand/update/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/brand/update/{id}")
     @ResponseBody
     public CommonResult updateBrand(@PathVariable("id") Long id, @Validated @RequestBody PmsBrandDto pmsBrandDto,BindingResult result) {
         if(result.hasErrors()){
@@ -74,7 +74,7 @@ public class DemoController {
     }
 
     @ApiOperation(value = "删除品牌")
-    @RequestMapping(value = "/brand/delete/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/brand/delete/{id}")
     @ResponseBody
     public CommonResult deleteBrand(@PathVariable("id") Long id) {
         int count = demoService.deleteBrand(id);
@@ -88,7 +88,7 @@ public class DemoController {
     }
 
     @ApiOperation(value = "分页获取品牌列表")
-    @RequestMapping(value = "/brand/list", method = RequestMethod.GET)
+    @GetMapping(value = "/brand/list")
     @ResponseBody
     public CommonResult<CommonPage<PmsBrand>> listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                                         @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
@@ -97,7 +97,7 @@ public class DemoController {
     }
 
     @ApiOperation(value = "根据编号查询品牌信息")
-    @RequestMapping(value = "/brand/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/brand/{id}")
     @ResponseBody
     public CommonResult<PmsBrand> brand(@PathVariable("id") Long id) {
         return CommonResult.success(demoService.getBrand(id));

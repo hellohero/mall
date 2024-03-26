@@ -23,7 +23,7 @@ public class UmsPermissionController {
     @Autowired
     private UmsPermissionService permissionService;
     @ApiOperation("添加权限")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     @ResponseBody
     public CommonResult create(@RequestBody UmsPermission permission) {
         int count = permissionService.create(permission);
@@ -34,7 +34,7 @@ public class UmsPermissionController {
     }
 
     @ApiOperation("修改权限")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/update/{id}")
     @ResponseBody
     public CommonResult update(@PathVariable Long id, @RequestBody UmsPermission permission) {
         int count = permissionService.update(id,permission);
@@ -45,7 +45,7 @@ public class UmsPermissionController {
     }
 
     @ApiOperation("根据id批量删除权限")
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @PostMapping(value = "/delete")
     @ResponseBody
     public CommonResult delete(@RequestParam("ids") List<Long> ids) {
         int count = permissionService.delete(ids);
@@ -56,7 +56,7 @@ public class UmsPermissionController {
     }
 
     @ApiOperation("以层级结构返回所有权限")
-    @RequestMapping(value = "/treeList", method = RequestMethod.GET)
+    @GetMapping(value = "/treeList")
     @ResponseBody
     public CommonResult<List<UmsPermissionNode>> treeList() {
         List<UmsPermissionNode> permissionNodeList = permissionService.treeList();
@@ -64,7 +64,7 @@ public class UmsPermissionController {
     }
 
     @ApiOperation("获取所有权限列表")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @ResponseBody
     public CommonResult<List<UmsPermission>> list() {
         List<UmsPermission> permissionList = permissionService.list();

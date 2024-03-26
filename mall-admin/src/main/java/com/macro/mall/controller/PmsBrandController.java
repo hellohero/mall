@@ -27,14 +27,14 @@ public class PmsBrandController {
     private PmsBrandService brandService;
 
     @ApiOperation(value = "获取全部品牌列表")
-    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    @GetMapping(value = "/listAll")
     @ResponseBody
     public CommonResult<List<PmsBrand>> getList() {
         return CommonResult.success(brandService.listAllBrand());
     }
 
     @ApiOperation(value = "添加品牌")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     @ResponseBody
     public CommonResult create(@Validated @RequestBody PmsBrandParam pmsBrand, BindingResult result) {
         CommonResult commonResult;
@@ -48,7 +48,7 @@ public class PmsBrandController {
     }
 
     @ApiOperation(value = "更新品牌")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/update/{id}")
     @ResponseBody
     public CommonResult update(@PathVariable("id") Long id,
                                @Validated @RequestBody PmsBrandParam pmsBrandParam,
@@ -64,7 +64,7 @@ public class PmsBrandController {
     }
 
     @ApiOperation(value = "删除品牌")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/delete/{id}")
     @ResponseBody
     public CommonResult delete(@PathVariable("id") Long id) {
         int count = brandService.deleteBrand(id);
@@ -76,7 +76,7 @@ public class PmsBrandController {
     }
 
     @ApiOperation(value = "根据品牌名称分页获取品牌列表")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @ResponseBody
     public CommonResult<CommonPage<PmsBrand>> getList(@RequestParam(value = "keyword", required = false) String keyword,
                                                       @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
@@ -86,14 +86,14 @@ public class PmsBrandController {
     }
 
     @ApiOperation(value = "根据编号查询品牌信息")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     @ResponseBody
     public CommonResult<PmsBrand> getItem(@PathVariable("id") Long id) {
         return CommonResult.success(brandService.getBrand(id));
     }
 
     @ApiOperation(value = "批量删除品牌")
-    @RequestMapping(value = "/delete/batch", method = RequestMethod.POST)
+    @PostMapping(value = "/delete/batch")
     @ResponseBody
     public CommonResult deleteBatch(@RequestParam("ids") List<Long> ids) {
         int count = brandService.deleteBrand(ids);
@@ -105,7 +105,7 @@ public class PmsBrandController {
     }
 
     @ApiOperation(value = "批量更新显示状态")
-    @RequestMapping(value = "/update/showStatus", method = RequestMethod.POST)
+    @PostMapping(value = "/update/showStatus")
     @ResponseBody
     public CommonResult updateShowStatus(@RequestParam("ids") List<Long> ids,
                                    @RequestParam("showStatus") Integer showStatus) {
@@ -118,7 +118,7 @@ public class PmsBrandController {
     }
 
     @ApiOperation(value = "批量更新厂家制造商状态")
-    @RequestMapping(value = "/update/factoryStatus", method = RequestMethod.POST)
+    @PostMapping(value = "/update/factoryStatus")
     @ResponseBody
     public CommonResult updateFactoryStatus(@RequestParam("ids") List<Long> ids,
                                       @RequestParam("factoryStatus") Integer factoryStatus) {

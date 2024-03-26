@@ -28,7 +28,7 @@ public class UmsResourceController {
     private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
 
     @ApiOperation("添加后台资源")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     @ResponseBody
     public CommonResult create(@RequestBody UmsResource umsResource) {
         int count = resourceService.create(umsResource);
@@ -41,7 +41,7 @@ public class UmsResourceController {
     }
 
     @ApiOperation("修改后台资源")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/update/{id}")
     @ResponseBody
     public CommonResult update(@PathVariable Long id,
                                @RequestBody UmsResource umsResource) {
@@ -55,7 +55,7 @@ public class UmsResourceController {
     }
 
     @ApiOperation("根据ID获取资源详情")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     @ResponseBody
     public CommonResult<UmsResource> getItem(@PathVariable Long id) {
         UmsResource umsResource = resourceService.getItem(id);
@@ -63,7 +63,7 @@ public class UmsResourceController {
     }
 
     @ApiOperation("根据ID删除后台资源")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/delete/{id}")
     @ResponseBody
     public CommonResult delete(@PathVariable Long id) {
         int count = resourceService.delete(id);
@@ -76,7 +76,7 @@ public class UmsResourceController {
     }
 
     @ApiOperation("分页模糊查询后台资源")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @ResponseBody
     public CommonResult<CommonPage<UmsResource>> list(@RequestParam(required = false) Long categoryId,
                                                       @RequestParam(required = false) String nameKeyword,
@@ -88,7 +88,7 @@ public class UmsResourceController {
     }
 
     @ApiOperation("查询所有后台资源")
-    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    @GetMapping(value = "/listAll")
     @ResponseBody
     public CommonResult<List<UmsResource>> listAll() {
         List<UmsResource> resourceList = resourceService.listAll();

@@ -24,7 +24,7 @@ public class SmsHomeBrandController {
     private SmsHomeBrandService homeBrandService;
 
     @ApiOperation("添加首页推荐品牌")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     @ResponseBody
     public CommonResult create(@RequestBody List<SmsHomeBrand> homeBrandList) {
         int count = homeBrandService.create(homeBrandList);
@@ -35,7 +35,7 @@ public class SmsHomeBrandController {
     }
 
     @ApiOperation("修改品牌排序")
-    @RequestMapping(value = "/update/sort/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/update/sort/{id}")
     @ResponseBody
     public CommonResult updateSort(@PathVariable Long id, Integer sort) {
         int count = homeBrandService.updateSort(id, sort);
@@ -46,7 +46,7 @@ public class SmsHomeBrandController {
     }
 
     @ApiOperation("批量删除推荐品牌")
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @PostMapping(value = "/delete")
     @ResponseBody
     public CommonResult delete(@RequestParam("ids") List<Long> ids) {
         int count = homeBrandService.delete(ids);
@@ -57,7 +57,7 @@ public class SmsHomeBrandController {
     }
 
     @ApiOperation("批量修改推荐状态")
-    @RequestMapping(value = "/update/recommendStatus", method = RequestMethod.POST)
+    @PostMapping(value = "/update/recommendStatus")
     @ResponseBody
     public CommonResult updateRecommendStatus(@RequestParam("ids") List<Long> ids, @RequestParam Integer recommendStatus) {
         int count = homeBrandService.updateRecommendStatus(ids, recommendStatus);
@@ -68,7 +68,7 @@ public class SmsHomeBrandController {
     }
 
     @ApiOperation("分页查询推荐品牌")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @ResponseBody
     public CommonResult<CommonPage<SmsHomeBrand>> list(@RequestParam(value = "brandName", required = false) String brandName,
                                                        @RequestParam(value = "recommendStatus", required = false) Integer recommendStatus,

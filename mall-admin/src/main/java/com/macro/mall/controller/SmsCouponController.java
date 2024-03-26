@@ -24,7 +24,7 @@ public class SmsCouponController {
     @Autowired
     private SmsCouponService couponService;
     @ApiOperation("添加优惠券")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     @ResponseBody
     public CommonResult add(@RequestBody SmsCouponParam couponParam) {
         int count = couponService.create(couponParam);
@@ -35,7 +35,7 @@ public class SmsCouponController {
     }
 
     @ApiOperation("删除优惠券")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/delete/{id}")
     @ResponseBody
     public CommonResult delete(@PathVariable Long id) {
         int count = couponService.delete(id);
@@ -46,7 +46,7 @@ public class SmsCouponController {
     }
 
     @ApiOperation("修改优惠券")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/update/{id}")
     @ResponseBody
     public CommonResult update(@PathVariable Long id,@RequestBody SmsCouponParam couponParam) {
         int count = couponService.update(id,couponParam);
@@ -57,7 +57,7 @@ public class SmsCouponController {
     }
 
     @ApiOperation("根据优惠券名称和类型分页获取优惠券列表")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @ResponseBody
     public CommonResult<CommonPage<SmsCoupon>> list(
             @RequestParam(value = "name",required = false) String name,
@@ -69,7 +69,7 @@ public class SmsCouponController {
     }
 
     @ApiOperation("获取单个优惠券的详细信息")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     @ResponseBody
     public CommonResult<SmsCouponParam> getItem(@PathVariable Long id) {
         SmsCouponParam couponParam = couponService.getItem(id);

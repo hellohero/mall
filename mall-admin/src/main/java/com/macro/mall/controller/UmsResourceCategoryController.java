@@ -23,7 +23,7 @@ public class UmsResourceCategoryController {
     private UmsResourceCategoryService resourceCategoryService;
 
     @ApiOperation("查询所有后台资源分类")
-    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    @GetMapping(value = "/listAll")
     @ResponseBody
     public CommonResult<List<UmsResourceCategory>> listAll() {
         List<UmsResourceCategory> resourceList = resourceCategoryService.listAll();
@@ -31,7 +31,7 @@ public class UmsResourceCategoryController {
     }
 
     @ApiOperation("添加后台资源分类")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     @ResponseBody
     public CommonResult create(@RequestBody UmsResourceCategory umsResourceCategory) {
         int count = resourceCategoryService.create(umsResourceCategory);
@@ -43,7 +43,7 @@ public class UmsResourceCategoryController {
     }
 
     @ApiOperation("修改后台资源分类")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/update/{id}")
     @ResponseBody
     public CommonResult update(@PathVariable Long id,
                                @RequestBody UmsResourceCategory umsResourceCategory) {
@@ -56,7 +56,7 @@ public class UmsResourceCategoryController {
     }
 
     @ApiOperation("根据ID删除后台资源")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/delete/{id}")
     @ResponseBody
     public CommonResult delete(@PathVariable Long id) {
         int count = resourceCategoryService.delete(id);

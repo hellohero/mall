@@ -26,7 +26,7 @@ public class HomeController {
     private HomeService homeService;
 
     @ApiOperation("首页内容页信息展示")
-    @RequestMapping(value = "/content", method = RequestMethod.GET)
+    @GetMapping(value = "/content")
     @ResponseBody
     public CommonResult<HomeContentResult> content() {
         HomeContentResult contentResult = homeService.content();
@@ -34,7 +34,7 @@ public class HomeController {
     }
 
     @ApiOperation("分页获取推荐商品")
-    @RequestMapping(value = "/recommendProductList", method = RequestMethod.GET)
+    @GetMapping(value = "/recommendProductList")
     @ResponseBody
     public CommonResult<List<PmsProduct>> recommendProductList(@RequestParam(value = "pageSize", defaultValue = "4") Integer pageSize,
                                                                @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
@@ -43,7 +43,7 @@ public class HomeController {
     }
 
     @ApiOperation("获取首页商品分类")
-    @RequestMapping(value = "/productCateList/{parentId}", method = RequestMethod.GET)
+    @GetMapping(value = "/productCateList/{parentId}")
     @ResponseBody
     public CommonResult<List<PmsProductCategory>> getProductCateList(@PathVariable Long parentId) {
         List<PmsProductCategory> productCategoryList = homeService.getProductCateList(parentId);
@@ -51,7 +51,7 @@ public class HomeController {
     }
 
     @ApiOperation("根据分类获取专题")
-    @RequestMapping(value = "/subjectList", method = RequestMethod.GET)
+    @GetMapping(value = "/subjectList")
     @ResponseBody
     public CommonResult<List<CmsSubject>> getSubjectList(@RequestParam(required = false) Long cateId,
                                                          @RequestParam(value = "pageSize", defaultValue = "4") Integer pageSize,

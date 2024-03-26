@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +34,7 @@ public class UmsMemberController {
     private UmsMemberService memberService;
 
     @ApiOperation("会员注册")
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     @ResponseBody
     public CommonResult register(@RequestParam String username,
                                  @RequestParam String password,
@@ -43,7 +45,7 @@ public class UmsMemberController {
     }
 
     @ApiOperation("会员登录")
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @PostMapping(value = "/login")
     @ResponseBody
     public CommonResult login(@RequestParam String username,
                               @RequestParam String password) {
@@ -58,7 +60,7 @@ public class UmsMemberController {
     }
 
     @ApiOperation("获取验证码")
-    @RequestMapping(value = "/getAuthCode", method = RequestMethod.GET)
+    @GetMapping(value = "/getAuthCode")
     @ResponseBody
     public CommonResult getAuthCode(@RequestParam String telephone) {
         String authCode = memberService.generateAuthCode(telephone);
@@ -66,7 +68,7 @@ public class UmsMemberController {
     }
 
     @ApiOperation("修改密码")
-    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    @PostMapping(value = "/updatePassword")
     @ResponseBody
     public CommonResult updatePassword(@RequestParam String telephone,
                                  @RequestParam String password,
@@ -77,7 +79,7 @@ public class UmsMemberController {
 
 
     @ApiOperation(value = "刷新token")
-    @RequestMapping(value = "/refreshToken", method = RequestMethod.GET)
+    @GetMapping(value = "/refreshToken")
     @ResponseBody
     public CommonResult refreshToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
