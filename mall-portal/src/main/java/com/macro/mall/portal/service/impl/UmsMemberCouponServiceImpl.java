@@ -9,6 +9,7 @@ import com.macro.mall.portal.domain.CartPromotionItem;
 import com.macro.mall.portal.domain.SmsCouponHistoryDetail;
 import com.macro.mall.portal.service.UmsMemberCouponService;
 import com.macro.mall.portal.service.UmsMemberService;
+import java.security.SecureRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -81,7 +82,7 @@ public class UmsMemberCouponServiceImpl implements UmsMemberCouponService {
         String timeMillisStr = currentTimeMillis.toString();
         sb.append(timeMillisStr.substring(timeMillisStr.length() - 8));
         for (int i = 0; i < 4; i++) {
-            sb.append(new Random().nextInt(10));
+            sb.append(new SecureRandom().nextInt(10));
         }
         String memberIdStr = memberId.toString();
         if (memberIdStr.length() <= 4) {
