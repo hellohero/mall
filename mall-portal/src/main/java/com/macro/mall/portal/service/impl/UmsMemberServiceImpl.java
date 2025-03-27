@@ -11,6 +11,7 @@ import com.macro.mall.portal.domain.MemberDetails;
 import com.macro.mall.portal.service.RedisService;
 import com.macro.mall.portal.service.UmsMemberService;
 import com.macro.mall.security.util.JwtTokenUtil;
+import java.security.SecureRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +106,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     @Override
     public String generateAuthCode(String telephone) {
         StringBuilder sb = new StringBuilder();
-        Random random = new Random();
+        Random random = new SecureRandom();
         for(int i=0;i<6;i++){
             sb.append(random.nextInt(10));
         }
